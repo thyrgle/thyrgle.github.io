@@ -119,4 +119,4 @@ Game over
 Conclusion
 ----------
 
-My ultimate goal is not to create an engine. My goal is to extend existing engines, such as Pygame, so that we have the modularity of the Unix philosophy with the feature completeness of the Godot engine. Thus, I am publishing smaller libraries (right now for Python, but I plan to add other languages later on!) as a collective of game libraries anyone can use (Apache 2.0 License).
+My ultimate goal is not to create a game engine but to extend existing game frameworks, such as Pygame, so that we have the modularity of the Unix philosophy *with* the feature completeness of an engine. The result is a collectiion of libraries that anyone can use (Apache 2.0 License).
