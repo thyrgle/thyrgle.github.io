@@ -5,7 +5,7 @@ date:   2026-5-11
 categories: game foss
 ---
 
-I tried [Godot](https://godotengine.org/) some years back and while it was an impressive piece of software, I found myself struggling with it. (Just to emphasize, this is nothing against Godot. Try it out! It really is a great piece of software that many people use to make great things!) Instead I found that I really liked the simplicity of [Love2D](https://www.love2d.org/). If you wanted to print "Hello, World!" to the screen, it really was as simple as:
+I tried [Godot](https://godotengine.org/) some years back and while it was an impressive piece of software, I found myself struggling with it. (Just to emphasize, I have nothing against Godot! Try it out! It really is a great piece of software that many people use to make great things!) Instead I found that I really liked the simplicity of [Love2D](https://www.love2d.org/). If you wanted to print "Hello, World!" to the screen, it really was as simple as:
 
 ```lua
 function love.draw()
