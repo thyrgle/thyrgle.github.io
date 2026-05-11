@@ -27,6 +27,7 @@ function love.draw()
     ...
   ...
   end
+end
 ```
 
 but this becomes an unreeadable mess very quickly. Fortunately, [awesome-love2d](https://github.com/love2d-community/awesome-love2d) addresses this!
