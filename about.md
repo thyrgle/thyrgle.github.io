@@ -4,12 +4,6 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+Hi! I am a software developer and mathematician currently in San Diego, California. I make and publish a lot of open source components for games.
 
-You can find the source code for the Jekyll new theme at:
-{% include icon-github.html username="jglovier" %} /
-[jekyll-new](https://github.com/jglovier/jekyll-new)
-
-You can find the source code for Jekyll at
-{% include icon-github.html username="jekyll" %} /
-[jekyll](https://github.com/jekyll/jekyll)
+I also maintain a website called [conjecscore.org](https://conjecscore.org/) which relaxes many open problems in mathematics and gives them (informally) a score to how close you are to solving them! (Do not take the site too seriously, it's really just for fun and gaining exposure to open problems!)
