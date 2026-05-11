@@ -65,9 +65,9 @@ I wanted a lot of HUMP functionality, but wanted to better enforce the [Unix phi
 
 [transytion](https://github.com/thyrgle/transytion) is a tweening library that originally started out similar to HUMP.timer, but it addressed some of the issues I had with HUMP.timer, namely:
 
-- The callback mechanism was a bit cumbersome.
-- Stopping tweens should have some sort of (optional) stop callback.
-- An extensive system for composing tweens together.
+- The callback mechanism was a bit cumbersome to use.
+- Stopping tweens should have some sort of (optional) stop callback. Therefore, if something happens (for instance, an enemy dies) the tween can have a convenient to use fail mechanism and switch to doing something else.
+- I wanted an extensive system for composing tweens together instead of glueing callbacks together.
 
 Even later I realized that I could utilize Python decorators to simplify tween creation. A function can be associated with a tween (say, `move`), and by using some decorator magic, calling that function will not actually call the function immediately. Instead the function call runs `move` *then* calls the function. Taken from the documentation, this allows us to write:
 
