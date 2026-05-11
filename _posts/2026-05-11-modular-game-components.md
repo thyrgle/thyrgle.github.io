@@ -13,7 +13,7 @@ function love.draw()
 end
 ```
 
-Saying that, Love2D might be too simple (well, for me). The simple `love.draw` loop exhbits challenges in *organization*. For instance, if there is only one `love.draw` function, how do you keep track of which scene (i.e. which level, menu screen, etc.) you are on. A naive approach to this might look like:
+Saying that, Love2D might be too simple (well, for me). The simplicity of the `love.draw` loop exhbits challenges in *organization*. For instance, if there is only one `love.draw` function, how do you keep track of which scene (i.e. which level, menu screen, etc.) you are on? A naive approach to this might look like:
 
 ```lua
 function love.load()
@@ -23,18 +23,18 @@ end
 function love.draw()
   if scene == "menu" then
     ...
-  else if scene == "level1" then
+  elseif scene == "level1" then
     ...
   ...
   end
 ```
 
-but this becomes a large monolithic unreeadable mess very quickly. Fortunately, [awesome-love2d](https://github.com/love2d-community/awesome-love2d) addresses this!
+but this becomes an unreeadable mess very quickly. Fortunately, [awesome-love2d](https://github.com/love2d-community/awesome-love2d) addresses this!
 
 Modular Components
 ------------------
 
-awesome-love2d keeps a list of libraries compatible with Love2D. In particular, I liked [HUMP](https://hump.readthedocs.io/en/latest/index.html). For the issue of gamestate, HUMP provides a submodule [HUMP.gamestate](https://hump.readthedocs.io/en/latest/gamestate.html) which allows you to make (along with some other features) separate draw functions for each scene such as:
+awesome-love2d keeps a list of libraries compatible with Love2D. In particular, I liked [HUMP](https://hump.readthedocs.io/en/latest/index.html). For the issue of scene management, HUMP provides a submodule [HUMP.gamestate](https://hump.readthedocs.io/en/latest/gamestate.html) which allows you to make (along with some other features) separate draw functions for each scene:
 
 ```lua
 local menu = {}
@@ -51,28 +51,29 @@ end
 
 The organization I sought after was now found!
 
-HUMP even has other features. [HUMP.timer](https://hump.readthedocs.io/en/latest/timer.html) allows for creating timers. It also has functionality for *tweening* values. That is, you can take one value and gradually change it to another value. I really loved these two sublibraries. But even I found the HUMP.tween library a little too lacking, but I did not want to use another tweening library, contribute to HUMP, modify HUMP source to accomidate my project, or make my own.
+HUMP even has other features. [HUMP.timer](https://hump.readthedocs.io/en/latest/timer.html) (as the name suggests) allows for creating timers. It also has functionality for *tweening* values. That is, you can take one value and gradually change it to another value *over time*. I really love these two sublibraries. But even I found the HUMP.tween library a little *too* lacking. This gave me a predicament: should I use another tweening library, contribute to HUMP, modify HUMP source to accomidate my project, or make my own.
 
 Making My Own
 -------------
 
-There was another problem: I wanted to write games in Python. I know this is a rather weird choice: It was purely because I was most familiar with Python. [Pygame](https://pyga.me/) seemed to be relatively similar to Love2D, but [awesome-pygame](https://github.com/kadir014/awesome-pygame) had fewer libraries listed. Even worse, after searching, I was not able to find much. The good news, I could use this opportunity to help contribute to the Pygame ecosystem!
+There was another problem I have yet to mention: I wanted to write games in Python. I know this is a rather weird choice given that Python is notoriously slow. Admittedly, I wanted to write in Python just because I was most familiar with Python. [Pygame](https://pyga.me/) seemed to be relatively similar to Love2D, but [awesome-pygame](https://github.com/kadir014/awesome-pygame) had fewer libraries listed. Even worse, after searching, I was not able to find much either. The good news, I could use this opportunity to help contribute to the Pygame ecosystem!
 
 Learning From HUMP
 ------------------
 
-I wanted a lot of HUMP functionality, but wanted to enforce the [Unix philosophy](https://en.wikipedia.org/wiki/Unix_philosophy). Thus, instead of making a HUMP equivalent for Pygame, I sought to make many small libraries, of which, combining all of them results in something that resembles HUMP. Fortunately, it seems as though there is an equivalent to HUMP.gamestate via [PyScenes](https://github.com/treygilliland/PyScenes). So, I decided to start working on tweening.
+I wanted a lot of HUMP functionality, but wanted to better enforce the [Unix philosophy](https://en.wikipedia.org/wiki/Unix_philosophy). Thus, instead of making a HUMP equivalent for Pygame, I sought to make smaller libraries, of which, combining all of them results in something that resembles HUMP. As for scene management, it seems as though there is an equivalent to HUMP.gamestate called [PyScenes](https://github.com/treygilliland/PyScenes) but I could not find anything for tweening. So, I decided to start working on a tweening library.
 
 transytion
 ----------
 
-[transytion](https://github.com/thyrgle/transytion) is a tweening library. That is all it is, and all it will be. Saying that, as I mentioned earlier, despite how much I love HUMP, I found there were some missing features.
+[transytion](https://github.com/thyrgle/transytion) is a tweening library originally started out similar to HUMP.timer, but, as time went on I realized HUMP.timer lacked some features that I wanted (all within the scope of tweening).
 
-- The callback mechanism was slightly cumbersome.
+- The callback mechanism was a bit cumbersome.
 - Stopping tweens should have some sort of (optional) stop callback.
 - An extensive system for composing tweens together.
 
-Later I would realize that I could better utilize Python decorators to even further simplify tween creation. A function can be associated with a tween and by using some decorator magic, calling that function will not actually call the function immediately, but instead run a tween *then* call the function. Taken, from the documentation this allows us to write:
+Even later I realized that I could utilize Python decorators to simplify tween creation. A function can be associated with a tween (say, `move`), and by using some decorator magic, calling that function will not actually call the function immediately. Instead the function call runs `move` *then* calls the function. Taken from the documentation, this allows us to write:
+
 
 ```py
 move = Tween(...)
@@ -83,23 +84,23 @@ def say_something():
 say_something()
 ```
 
-Thus, if one wants a character that moves a bit, then says something, moves a bit again, and says more, we can keep things organized and simply write:
+Thus, if one wants a character to move a bit, then say something, move a bit more, and say even more, we can keep things organized:
 
 ```py
 say_something()
 say_something2()
 ```
 
-Letting us focus on the underlying logic and *not* the animations.
+This keeps the focus of the code on the underlying logic and *not* the animations.
 
 Beyond HUMP
 -----------
 
 As I continued working with Pygame, there seemed to be other core components missing:
 
-- From my experience with [conjecscore.org](https://conjecscore.org/), I found it annoying to manage the layout of content on the screen compared to how it is done in web development. To (partially) fix this, I worked on a [lpyout](https://github.com/thyrgle/lpyout) as a layout engine for games.
-- The shortest path libraries I found were inconvenient to use (for games at least). For most of these libaries, the input required a graph representation (such as an adjacency matrix). I did not have an adjacency matrix of the world, I had a grid of the world. So, I made [gtravyl](https://github.com/thyrgle/gtravyl) that focuses shortest paths for grid representations of a world. Although not as flexible, I believe this is much easier to use than the existing libraries out there and is still flexible enough for most use cases.
-- I feel (although potentially a *very* controversial opinion) that event listeners are underrated as an organizational tool. This includes games, so I developed [pypagate](https://github.com/thyrgle/pypagate) which makes it so you can turn formulas into event listeners. Formulas end up being very flexible and can describe many situations quite elegantly. Consider the following game scenario from the README of pypagate that creates event listeners for when a game should end:
+- From my experience with [conjecscore.org](https://conjecscore.org/), I found it annoying to manage the layout of content on the screen compared to how it is done in web development. Layout ended up being much harder than I thought it would be. To (partially) fix this, I worked on [lpyout](https://github.com/thyrgle/lpyout) as a layout engine for games.
+- The shortest path libraries I found were inconvenient to use (for games at least). For most of these libaries, the input required a graph representation (such as an adjacency matrix). I did not have an adjacency matrix of the world. Instead, I had a grid of the world. I made [gtravyl](https://github.com/thyrgle/gtravyl) that takes in a *grid representation* of the world and finds the shortest path. Although not as flexible, I believe this is much easier to use than the existing libraries out there while remaining flexible enough for *most* use cases.
+- I feel (although potentially a *very* controversial opinion) that event listeners are underrated as an organizational tool. This includes games, so I developed [pypagate](https://github.com/thyrgle/pypagate) which can create formulas and (from formulas) create listeners. Formulas can describe many situations quite elegantly. Consider the following game scenario from the `README` of pypagate that creates event listeners for when a game should end:
 
 ```py
 >>> from pypagate import Term, fire_on
@@ -120,4 +121,4 @@ Game over
 Conclusion
 ----------
 
-My ultimate goal is not to create an engine. My goal is to extend existing engines, such as Pygame, so that we have the modularity of the Unix philosophy with the feature completeness of the Godot engine. Thus, I am publishing many smaller libraries as a collective of game libraries anyone can use (Apache 2.0 License).
+My ultimate goal is not to create an engine. My goal is to extend existing engines, such as Pygame, so that we have the modularity of the Unix philosophy with the feature completeness of the Godot engine. Thus, I am publishing smaller libraries (right now for Python, but I plan to add other languages later on!) as a collective of game libraries anyone can use (Apache 2.0 License).
