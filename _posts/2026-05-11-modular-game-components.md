@@ -63,10 +63,7 @@ Learning From HUMP
 
 I wanted a lot of HUMP functionality, but wanted to better enforce the [Unix philosophy](https://en.wikipedia.org/wiki/Unix_philosophy). Thus, instead of making a HUMP equivalent for Pygame, I sought to make smaller libraries, of which, combining all of them results in something that resembles HUMP. As for scene management, it seems as though there is an equivalent to HUMP.gamestate called [PyScenes](https://github.com/treygilliland/PyScenes) but I could not find anything for tweening. So, I decided to start working on a tweening library.
 
-transytion
-----------
-
-[transytion](https://github.com/thyrgle/transytion) is a tweening library originally started out similar to HUMP.timer, but, as time went on I realized HUMP.timer lacked some features that I wanted (all within the scope of tweening).
+[transytion](https://github.com/thyrgle/transytion) is a tweening library that originally started out similar to HUMP.timer, but it addressed some of the issues I had with HUMP.timer, namely:
 
 - The callback mechanism was a bit cumbersome.
 - Stopping tweens should have some sort of (optional) stop callback.
