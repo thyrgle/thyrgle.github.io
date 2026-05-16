@@ -86,7 +86,7 @@ def main():
 A Small Adaptation for a Better Sieve
 -------------------------------------
 
-The output indicates there are \\(2000\\) candidate values for $n$ that work. In fact, we can adapt this program slightly to get an even smaller selection of \\(n\\).
+The output indicates there are \\(2000\\) candidate values for \\(n\\) that work. In fact, we can adapt this program slightly to get an even smaller selection of \\(n\\).
 
 We observed above that \\(n^2 + a\\) and \\(n^2 - a\\) were squares to conclude \\(n^2\\) was an average of a pair of different squares. It is also true that \\(n^2 + b\\) and \\(n^2 - b\\) are squares. Similarly, \\(n^2 + a + b\\) and \\(n^2 - a - b\\) are also squares. Thus, we can repeat this argument to see that \\(n^2\\) is the average of *at least* \\(3\\) different pairs of squares. So, we should only add to `candidate_n` if \\(n\\) appears \\(3\\) times or more. This can be easily done with a `Counter` object:
 
