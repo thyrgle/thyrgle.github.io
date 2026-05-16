@@ -44,7 +44,7 @@ $$n^2 = \frac{t^2 + f^2}{2}$$
 
 Furthermore \\(n = \sqrt{\frac{t^2 + f^2}{2}} = \frac{\sqrt{t^2  + f^2}}{\sqrt{2}}\\). This might seem like a silly observation, but we may use the fact that \\(n\\) is an integer to observe that the prime factorization of \\(t^2 + f^2\\) must have an *odd* power of \\(2\\) in it.
 
-There is an [quick way to compute the largest power of \\(2\\) that divides a number:](https://www.geeksforgeeks.org/dsa/highest-power-of-two-that-divides-a-given-number/)
+There is a [quick way to compute the largest power of \\(2\\) that divides a number:](https://www.geeksforgeeks.org/dsa/highest-power-of-two-that-divides-a-given-number/)
 
 ```py
 def largest_two_pow(n):
