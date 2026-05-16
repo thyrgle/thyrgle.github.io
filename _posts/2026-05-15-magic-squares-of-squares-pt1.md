@@ -5,7 +5,7 @@ date: 2026-5-11
 categories: math
 ---
 
-The [Magic Square of Squares](https://en.wikipedia.org/wiki/Magic_square_of_squares) asks for a $3 \times 3$ Magic Square where all the entries are square numbers.
+The [Magic Square of Squares](https://en.wikipedia.org/wiki/Magic_square_of_squares) asks for a \(3 \times 3\) Magic Square where all the entries are square numbers.
 
 To be a $3 \times 3$ Latin Square $9$ numbers are arranged in a $3 \times 3$ square and each column, row, and diagonal add up to the same value. For instance, 
 
