@@ -19,7 +19,7 @@ Is a magic square since each row, column, and diagonal sum to \\(15\\). However,
 
 I decided to spend a little time thinking about it, and decided my first goal would be to find potential values for the center entry.
 
-I am going to sieve out various impossible chocies for the center entry. That is, a center is impossible if it cannot possibly be used as a center value in a "Magic Square of Squares". To do so, I will leverage two well known properties that *any* magic square must have:
+I am going to sieve out various impossible chocies for the center entry. That is, a center entry is impossible if it could not possibly be used as a center entry in a "Magic Square of Squares". To do so, I will leverage two well known properties that *any* magic square must have:
 
 1. Let the sum of any row, column, or digonal be called the magic sum and denote it as \\(S\\). Then the [center value of a magic square is precisely $S/3$](https://math.stackexchange.com/a/5034311/15140).
 2. Furthermore, up to symmetry, [all magic squares must have the form:](https://math.stackexchange.com/a/5108848/15140)
