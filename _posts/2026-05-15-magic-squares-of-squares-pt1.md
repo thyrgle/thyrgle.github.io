@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Magic Square of Squares Part 1"
-date: 2026-16-11
+date: 2026-05-16
 categories: math
 ---
 
