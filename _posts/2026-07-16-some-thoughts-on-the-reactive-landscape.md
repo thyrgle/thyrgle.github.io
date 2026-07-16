@@ -105,7 +105,7 @@ I started working on [pypagate](https://github.com/thyrgle/pypagate) trying to u
 
 Furthermore, I wanted syntax to be convenient. This is something I feel like is lost with RxJS to be quite frank. I want to be able to write `z = x + y` and, ideally, nothing else. You can do this with operator overloading.
 
-As an aside, core tenants of Python and C++ were broken making the reactive libraries. In Python, comparison operators like `==`, even when overridden, are expected to return a `bool`, but my library *intentionally* returns a `Formula` object. Why? Because you need to return something that has the ability to auto-update. A `bool` has no way of doing this. In C++, you should not modify `x` or `y` in the expression `x + y`, but you need to for reactivity. See, `x` and `y` have parent `formula` objects and when they change they must notify their parents. Thus, in `z = x + y` you add `z` as a parent to both `x` and `y`.
+As an aside, core tenets of Python and C++ were broken making the reactive libraries. In Python, comparison operators like `==`, even when overridden, are expected to return a `bool`, but my library *intentionally* returns a `Formula` object. Why? Because you need to return something that has the ability to auto-update. A `bool` has no way of doing this. In C++, you should not modify `x` or `y` in the expression `x + y`, but you need to for reactivity. See, `x` and `y` have parent `formula` objects and when they change they must notify their parents. Thus, in `z = x + y` you add `z` as a parent to both `x` and `y`.
 
 Despite all this, does this give you anything? Maybe a little, but we have to go just a *touch* beyond spreadsheets.
 
